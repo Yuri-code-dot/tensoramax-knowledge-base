@@ -1,0 +1,861 @@
+﻿Title,Split,Status,Approved,Reviewer,Domain,Difficulty,Quality Score,Safety Label,Language,Source,Dataset Version,Last Modified,Assistant Message,Created Date,Duplicate Checked,Fact Checked,ID,Input,Instruction,Output,Safety Checked,Subdomain,System Message,Tags,User Message
+HTML: accessible button vs link,Train,Draft,No,,"Education, Frontend, Web Development",Easy,8,Safe,English,Curated,v0.1,"June 13, 2026 12:56 AM","Use a <button> for opening a modal because it’s an action, not navigation.","June 13, 2026 12:56 AM",Yes,Yes,1,"User is building a UI with a clickable element that triggers JS, not navigation.",Teach when to use a <button> vs an <a> tag with accessibility considerations.,"Use <button> for actions (submitting forms, opening modals, toggling UI). Use <a href> for navigation.nnExample action button:nhtml\n<button type=""button"" aria-expanded=""false"" aria-controls=""menu"">Menu</button>\nnnExample navigation link:nhtml\n<a href=""/pricing"">View pricing</a>\nnnAvoid div/span with click handlers unless you fully recreate keyboard and ARIA behavior.",Yes,HTML / Accessibility,You are TensoraMax Studio Assistant. Prioritize accessibility and web standards.,html,Should I use a link or a button for opening a modal?
+Python: read a CSV and compute average,Train,Draft,No,,"Data Science, Programming",Easy,8,Safe,English,Curated,v0.1,"June 13, 2026 12:56 AM",Use the built-in csv module and sum values while counting rows. (See code in Output.),"June 13, 2026 12:56 AM",Yes,Yes,10,CSV file path: data.csvnColumn: price,Write Python code that reads a CSV file with a numeric column and prints the average.,"python\nimport csv\n\ndef average_column(path, col):\n    total = 0.0\n    count = 0\n    with open(path, newline='', encoding='utf-8') as f:\n        reader = csv.DictReader(f)\n        for row in reader:\n            if row.get(col) in (None, ''):\n                continue\n            total += float(row[col])\n            count += 1\n    return total / count if count else None\n\navg = average_column('data.csv', 'price')\nprint(avg)\n",Yes,Python / CSV processing,"You are TensoraMax Studio Assistant. Provide correct, concise, production-ready code with brief explanation when useful.",python,I have a CSV called data.csv with a column price. How do I compute the average price in Python?
+JavaScript: debounce a function,Train,Draft,No,,"Frontend, Programming, Web Development",Medium,8,Safe,English,Curated,v0.1,"June 13, 2026 12:56 AM",Debouncing delays a function until events stop firing. Here’s a standard implementation (see Output).,"June 13, 2026 12:56 AM",Yes,Yes,2,"Need debounce(fn, wait) that preserves this and args.",Explain what debouncing is and provide a JavaScript debounce implementation.,"js\nfunction debounce(fn, wait = 200) {\n  let t;\n  return function debounced(...args) {\n    const ctx = this;\n    clearTimeout(t);\n    t = setTimeout(() => fn.apply(ctx, args), wait);\n  };\n}\n\n// usage\nwindow.addEventListener('resize', debounce(() => {\n  console.log('resized');\n}, 250));\nnnDebouncing delays execution until calls stop for wait ms.",Yes,JavaScript / Performance,You are TensoraMax Studio Assistant. Be correct and practical; avoid unnecessary verbosity.,javascript,How do I debounce a function in JavaScript?
+CSS: center a div (modern ways),Train,Draft,No,,"Frontend, Web Development",Easy,8,Safe,English,Curated,v0.1,"June 13, 2026 12:56 AM",Use Flexbox (align-items + justify-content) or CSS Grid (place-items: center).,"June 13, 2026 12:56 AM",Yes,Yes,8,Need responsive centering inside a full-height page.,Provide modern CSS methods to center an element horizontally and vertically.,Two common modern options:nn1) Flexboxncss\n.container {\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\nnn2) Gridncss\n.container {\n  min-height: 100vh;\n  display: grid;\n  place-items: center;\n}\n,Yes,CSS / Layout,"You are TensoraMax Studio Assistant. Give concise, correct CSS patterns.",css,How do I center a div both vertically and horizontally?
+AI: explain embeddings with an analogy,Train,Draft,No,,"AI, Education, Machine Learning",Easy,7,Safe,English,Human Written,v0.1,"June 13, 2026 12:56 AM",Embeddings represent meaning as numbers so you can compare similarity; they power semantic search and RAG.,"June 13, 2026 12:56 AM",Yes,Yes,5,Audience: beginner developer.,Explain embeddings in simple terms and give one practical use case.,"An embedding is a way to turn text (or images) into a list of numbers so that similar things end up near each other in a vector space.nnAnalogy: imagine a map where cities that are culturally similar are closer together. Embeddings make a “meaning map” for words/sentences.nnUse case: semantic search. Store embeddings for your knowledge base articles, embed a user question, then retrieve the closest articles (RAG).",Yes,NLP fundamentals,You are TensoraMax Studio Assistant. Teach clearly with simple examples.,ml,What are embeddings?
+ML: train/validation/test split best practices,Train,Draft,No,,"Data Science, Education, Machine Learning",Medium,8,Safe,English,Curated,v0.1,"June 13, 2026 12:56 AM","Train fits, validation selects/tunes, test evaluates once; keep splits leakage-free.","June 13, 2026 12:56 AM",Yes,Yes,3,Model: supervised classification; dataset size moderate.,Explain why we split data into train/validation/test and common ratios.,"- Train: fit model parameters.n- Validation: tune hyperparameters / early stopping / model selection.n- Test: final, unbiased estimate (touch it once).nnCommon starting ratios: 80/10/10 or 70/15/15. If data is small, use k-fold CV for selection and keep a small held-out test set.nnImportant: prevent leakage (e.g., same user/session appearing in multiple splits).",Yes,Evaluation / data splitting,You are TensoraMax Studio Assistant. Emphasize correctness and leakage prevention.,ml,Why do we need train/val/test splits?
+Software Engineering: write a good Git commit message,Train,Draft,No,,"Education, Productivity, Software Engineering",Easy,7,Safe,English,Human Written,v0.1,"June 13, 2026 12:56 AM","Use an imperative summary line, keep it short, and add context in the body when needed.","June 13, 2026 12:56 AM",Yes,Yes,4,Team uses conventional commits optionally.,Give guidelines and examples for writing clear Git commit messages.,"Guidelines:n- Use imperative mood: “Add”, “Fix”, “Refactor”.n- First line ≤ ~50 chars, summarize the change.n- Optional body explains why (not just what).n- Reference issues/PRs when helpful.nnExamples:n- Fix auth token refresh on 401n- Refactor search query builder for readabilityn- feat(api): add pagination to /projects",Yes,Version control practices,You are TensoraMax Studio Assistant. Prefer actionable engineering guidance.,docs,How do I write better commit messages?
+Reasoning: schedule overlap problem,Validation,Review,No,,"Productivity, Reasoning",Medium,7,Safe,English,Synthetic,v0.1,"June 13, 2026 12:56 AM",There is 1 overlap conflict (A with B). B and C touch at 12:00 but don’t overlap under standard half-open intervals.,"June 13, 2026 12:56 AM",Yes,Yes,7,"Meetings: A 10:00-11:30, B 11:00-12:00, C 12:00-12:30. How many conflicts?",Solve a reasoning problem about interval overlap and explain the approach.,"A conflicts with B because their intervals overlap from 11:00–11:30.nB and C do not conflict if end times are treated as non-inclusive (B ends at 12:00, C starts at 12:00).nSo there is 1 conflict: (A, B).nnApproach: sort by start time and compare each interval’s start to the previous interval’s end.",Yes,Intervals / logic,"You are TensoraMax Studio Assistant. Show clear reasoning, state assumptions.",reasoning,"Given these meetings, how many conflicts are there?"
+Backend: REST vs RPC in API design,Train,Draft,No,,"Backend, Software Engineering",Hard,8,Safe,English,Curated,v0.1,"June 13, 2026 12:56 AM","For internal typed clients and fast iteration, RPC is often better; REST is great for public resource APIs.","June 13, 2026 12:56 AM",Yes,Yes,6,"Internal microservice, high iteration speed, typed clients.",Compare REST and RPC styles; give guidance on choosing for a new internal service.,"- REST: resource-oriented, uses HTTP verbs; great for public APIs and cacheability; can become awkward for complex actions.n- RPC: action-oriented (e.g., CreateInvoice); great for internal services with typed IDLs (gRPC/Connect); easier to model workflows.nnGuidance: for an internal, fast-moving service with typed clients, RPC (gRPC/Connect) is often a better fit. If you expect broad external use, simple resources, or strong HTTP semantics, REST is a safe default.",Yes,API design,You are TensoraMax Studio Assistant. Be balanced and engineering-focused.,docs,Should we use REST or RPC for a new internal service?
+DevOps: explain CI vs CD,Train,Draft,No,,"Cloud Computing, DevOps, Education",Easy,7,Safe,English,Human Written,v0.1,"June 13, 2026 12:56 AM",CI validates changes continuously; CD handles automated delivery/deployments after CI passes.,"June 13, 2026 12:56 AM",Yes,Yes,9,Audience: junior engineer joining a team.,Explain CI vs CD and how they work together in a deployment pipeline.,- CI (Continuous Integration): automatically build + test every change (PR/merge) to catch issues early.n- CD (Continuous Delivery/Deployment): automatically deliver changes to staging/production.nnTypical flow: commit → CI runs lint/tests/build → artifact produced → CD promotes artifact to environments with approvals/rollbacks.,Yes,Delivery pipelines,You are TensoraMax Studio Assistant. Teach clearly and practically.,docs,What’s the difference between CI and CD?
+Mathematics: derive gradient of MSE loss,Train,Draft,No,,"Education, Machine Learning, Mathematics",Hard,8,Safe,English,Curated,v0.1,"June 13, 2026 12:57 AM",Compute derivatives via e_i = y_i - (w x_i + b); gradients are -(2/n)Σ x_i e_i and -(2/n)Σ e_i.,"June 13, 2026 12:57 AM",Yes,Yes,11,Loss: L = (1/n) Σ (y_i - (w x_i + b))^2,Derive the gradient of mean squared error loss for linear regression.,Let e_i = y_i - (w x_i + b). Then L = (1/n) Σ e_i^2.nn∂L/∂w = (1/n) Σ 2 e_i (∂e_i/∂w) = (1/n) Σ 2 e_i (-x_i) = -(2/n) Σ x_i (y_i - (w x_i + b)).nn∂L/∂b = (1/n) Σ 2 e_i (∂e_i/∂b) = (1/n) Σ 2 e_i (-1) = -(2/n) Σ (y_i - (w x_i + b)).,Yes,Optimization / calculus,You are TensoraMax Studio Assistant. Provide step-by-step derivations with clear notation.,ml,What is the gradient of MSE for ŷ = w x + b?
+Mobile: React Native vs Flutter (decision guide),Train,Draft,No,,"Mobile Development, Productivity, Software Engineering",Hard,7,Safe,English,Curated,v0.1,"June 13, 2026 12:57 AM","Given JS skills, React Native is usually faster to ship; Flutter is great for consistent UI but requires Dart adoption.","June 13, 2026 12:57 AM",Yes,Yes,14,"Small team, wants iOS+Android, has JS experience.",Compare React Native and Flutter and give guidance for choosing.,"- React Native: JavaScript/TypeScript + native bridges; great if your team is strong in JS/React; large ecosystem; some perf/native-module complexity.n- Flutter: Dart + Skia rendering; consistent UI; strong performance; smaller hiring pool if you don’t already use Dart.nnFor a small team with strong JS/React skills, React Native often wins on speed-to-market. Choose Flutter if you want maximum UI consistency and are comfortable adopting Dart.",Yes,Framework selection,You are TensoraMax Studio Assistant. Provide balanced tradeoffs and a clear recommendation given constraints.,docs,Should we pick React Native or Flutter? We mostly know JavaScript.
+Cybersecurity: explain SQL injection and prevention,Train,Draft,No,,"Backend, Cybersecurity, Education, Web Development",Medium,8,Safe,English,Curated,v0.1,"June 13, 2026 12:57 AM",It’s when input becomes part of SQL; prevent it with parameterized queries and least privilege.,"June 13, 2026 12:57 AM",Yes,Yes,12,Web app builds SQL using string concatenation.,Explain SQL injection with a simple example and how to prevent it.,"SQL injection happens when untrusted input is treated as SQL code.nnVulnerable (don’t do this):njs\nconst q = SELECT  FROM users WHERE email = '${email}';\nnAttacker input: x' OR '1'='1 can change query meaning.nnPrevention:n- use parameterized queries / prepared statementsn- validate/limit input where appropriaten- least-privilege DB accountsnnExample (parameterized):n`jsnconst q = 'SELECT  FROM users WHERE email = ?';nconn.execute(q, [email]);n`",Yes,Injection prevention,You are TensoraMax Studio Assistant. Teach security best practices without enabling misuse.,docs,What is SQL injection and how do I prevent it?
+Deep Learning: why layer normalization helps transformers,Train,Draft,No,,"AI, Deep Learning, Education, Machine Learning",Expert,8,Safe,English,Human Written,v0.1,"June 13, 2026 12:57 AM",It stabilizes activation scales and gradients; Pre-LN variants improve deep transformer training stability.,"June 13, 2026 12:57 AM",Yes,Yes,17,Audience: intermediate ML engineer.,Explain LayerNorm in transformers and why it stabilizes training.,"LayerNorm normalizes activations across the feature dimension for each token (per example), keeping mean/variance stable.nnIn transformers it helps because:n- gradients are less sensitive to scale changes across layersn- optimization becomes more stable at high depthn- it reduces internal covariate shift-like effectsnnPractical note: modern architectures often use Pre-LN (LayerNorm before attention/MLP blocks) for improved training stability at scale.",Yes,Transformer training stability,"You are TensoraMax Studio Assistant. Explain clearly, avoid hand-wavy claims, include practical notes.",ml,Why do transformers use LayerNorm?
+Databases: explain indexing tradeoffs,Train,Draft,No,,"Backend, Databases, Education, Software Engineering",Medium,8,Safe,English,Human Written,v0.1,"June 13, 2026 12:57 AM",Indexes speed reads but add write cost and storage; choose indexes based on query patterns and measure with EXPLAIN.,"June 13, 2026 12:57 AM",Yes,Yes,15,"Context: SQL database, table with millions of rows.","Explain what database indexes are, when they help, and their tradeoffs.",An index is an additional data structure (often a B-tree) that lets the database find rows faster without scanning the whole table.nnHelps when:n- queries filter/sort/join on the indexed columnsn- selectivity is reasonablennTradeoffs:n- writes become slower (INSERT/UPDATE/DELETE must update indexes)n- more storagen- too many indexes can hurt planner choicesnnRule of thumb: index columns used in WHERE/JOIN/ORDER BY for high-value queries; verify with EXPLAIN and monitor write amplification.,Yes,Query performance,You are TensoraMax Studio Assistant. Be practical and performance-oriented.,docs,What are indexes in databases and why not index everything?
+Technical Writing: structure an API reference entry,Train,Draft,No,,"Education, Productivity, Software Engineering",Medium,7,Safe,English,Documentation,v0.1,"June 13, 2026 12:57 AM","Use a consistent structure: summary, signature, auth, params, examples, responses, errors, notes.","June 13, 2026 12:57 AM",Yes,Yes,16,Need a repeatable structure for endpoints/functions.,Provide a template for writing a clear API reference section.,"Recommended API reference structure:n1. Summary (1–2 lines: what it does)n2. Endpoint/Signaturen3. Authentication/Permissionsn4. Parameters (table: name, type, required, description, examples)n5. Request examplen6. Response schema + examplen7. Error cases (common codes and meaning)n8. Notes (rate limits, idempotency, pagination)nnTip: put the “why/when to use” in guides; keep reference pages consistent and scannable.",Yes,Documentation / API reference,"You are TensoraMax Studio Assistant. Write professional, scalable documentation patterns.",docs,How should I format an API reference page?
+TXB Knowledge: answer with citations policy (example),Test,Review,No,,"AI, TXB Knowledge, TensoraMax Studio",Medium,6,Needs Review,English,Synthetic,v0.1,"June 13, 2026 12:57 AM",It’s the knowledge base that powers retrieval for the assistant and acts as a source of truth; clearly separate confirmed facts from assumptions.,"June 13, 2026 12:57 AM",Yes,No,13,"Question: ""What is TXB used for in TensoraMax Studio?"" (Assume TXB is the internal knowledge base).",Provide an answer that uses retrieved knowledge from TXB and clearly marks what is known vs assumed.,"TXB (TensoraMax Knowledge Base) is used as the central internal source of truth for TensoraMax Studio—storing product docs, engineering guidelines, and reference material that the assistant can retrieve for Q&A (RAG).nnIf your workspace defines additional TXB scopes (e.g., customer docs vs internal docs), the assistant should (1) retrieve from the relevant scope, and (2) quote or cite the exact article section used.nnAssumption: the acronym “TXB” refers to TensoraMax Knowledge Base as stated in the question; confirm against your TXB index page if naming differs.",Yes,Knowledge base usage,"You are TensoraMax Studio Assistant. When using knowledge base content, be explicit about sources and assumptions.",txb,What is TXB used for in TensoraMax Studio?
+TensoraMax Studio: plugin architecture overview (example),Train,Draft,No,,"AI, Software Engineering, TensoraMax Studio",Expert,7,Needs Review,English,Human Written,v0.1,"June 13, 2026 12:57 AM","Describe it as core runtime + plugin API + plugins, with boundaries and backwards compatibility goals.","June 13, 2026 12:57 AM",Yes,No,18,Need a high-level architecture description for TensoraMax Studio modules/extensions.,Draft a concise explanation of a modular studio architecture suitable for internal docs.,"TensoraMax Studio can be organized as a core runtime plus plugins:n- Core: authentication, workspace/projects, settings, logging/telemetry, permissions, and shared UI components.n- Plugin API: a stable interface for extensions (commands, panels, routes, background jobs).n- Plugins: features like dataset labeling, model evaluation, code tools, and TXB search—each versioned and independently deployable.nnDesign goals: strict boundaries, clear ownership, and backwards-compatible plugin contracts so new capabilities can ship without breaking the core.",Yes,Platform architecture,"You are TensoraMax Studio Assistant. Write like an internal engineering doc: clear, modular, and concrete.",docs,Can you describe a modular architecture for TensoraMax Studio?
+Reasoning: choose the best next step (debugging),Validation,Review,No,,"Backend, Reasoning, Software Engineering",Hard,8,Safe,English,Synthetic,v0.1,"June 13, 2026 12:57 AM",Start with production DB connectivity/pool saturation metrics and environment diffs; it’s the highest-signal explanation for prod-only timeouts.,"June 13, 2026 12:57 AM",Yes,No,19,API returns 500 only in production; logs show timeouts to database; staging OK.,"Given symptoms of a bug, pick the most informative next debugging step and explain why.","Most informative next step: check production DB connectivity and connection pool metrics (latency, max connections, saturation) and correlate with the timeout window.nnWhy: the symptom points to an external dependency failure (DB timeouts) that is environment-specific. Confirming pool exhaustion/network issues narrows root cause faster than code changes.nnThen: inspect recent deploys/config diffs (pool size, DNS, security group) and add request-level tracing for the DB call path.",Yes,Debugging strategy,You are TensoraMax Studio Assistant. Prioritize high-signal debugging steps and explain reasoning.,reasoning,Prod-only 500s with DB timeouts; what should I check first?
+Python: validate JSON schema (basic),Train,Review,No,,"Programming, Software Engineering",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Yes—implement a small validator that checks required fields and basic types (see Output).,"June 13, 2026 1:07 AM",Yes,Yes,20,"Schema supports: required keys, type checks for str/int/bool/list/dict.",Write Python code to validate a JSON object against a simple schema without external libraries.,"python
+from typing import Any, Dict
+
+TYPE_MAP = {
+    'str': str,
+    'int': int,
+    'bool': bool,
+    'list': list,
+    'dict': dict,
+}
+
+def validate(obj: Dict[str, Any], schema: Dict[str, Any]) -> list[str]:
+    errors = []
+    required = schema.get('required', [])
+    props = schema.get('properties', {})
+
+    for key in required:
+        if key not in obj:
+            errors.append(f""missing required: {key}"")
+
+    for key, spec in props.items():
+        if key not in obj:
+            continue
+        t = spec.get('type')
+        if t and t in TYPE_MAP and not isinstance(obj[key], TYPE_MAP[t]):
+            errors.append(f""{key} expected {t}, got {type(obj[key]).__name__}"")
+
+    return errors
+
+sample = {""name"": ""A"", ""age"": 10}
+schema = {
+  ""required"": [""name""],
+  ""properties"": {""name"": {""type"": ""str""}, ""age"": {""type"": ""int""}}
+}
+print(validate(sample, schema))
+",Yes,Python / validation,You are TensoraMax Studio Assistant. Provide correct code and brief explanation.,python,Can you show a simple JSON schema validator in Python without libraries?
+JavaScript: deep clone safely (structuredClone),Train,Review,No,,"Frontend, Programming, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Use structuredClone when available; avoid JSON stringify for non-plain data types.,"June 13, 2026 1:07 AM",Yes,Yes,23,Need cloning without lodash; handle Dates/Maps when possible.,Explain how to deep clone objects in modern JavaScript and caveats.,"Prefer structuredClone (browser + recent Node):
+js
+const copy = structuredClone(original);
+
+
+Caveats:
+- It can’t clone functions or DOM nodes.
+- For older environments, use a library or write a targeted clone.
+
+Avoid JSON.parse(JSON.stringify(x)) for anything with Dates, Maps, undefined, or cyclic refs.",Yes,JavaScript / data structures,You are TensoraMax Studio Assistant. Be accurate about platform support and caveats.,javascript,What’s the best way to deep clone an object in JS now?
+Reasoning: estimate complexity from constraints,Train,Review,No,,"Education, Programming, Reasoning",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",O(n) or O(n log n); O(n^2) is infeasible at 200k.,"June 13, 2026 1:07 AM",Yes,Yes,21,"n up to 200,000; need compute something per element with occasional lookups.","Given constraints, choose an algorithmic complexity target and justify.","With n = 2e5, aim for O(n) or O(n log n). Avoid O(n^2). 
+
+If you need lookups, use a hash map (average O(1)) or sort once (O(n log n)) then scan. Justification: n^2 would be ~4e10 operations—too slow.",Yes,Complexity / algorithms,You are TensoraMax Studio Assistant. Show reasoning with back-of-envelope math.,reasoning,"If n can be 200k, what time complexity should I target?"
+Cybersecurity: password storage best practice,Train,Review,No,,"Backend, Cybersecurity, Software Engineering",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Use a slow password hashing KDF like Argon2id/bcrypt; never store plaintext or reversible encryption.,"June 13, 2026 1:07 AM",Yes,Yes,27,Web app signup/login flow.,Explain how to store passwords securely and what not to do.,"Do:
+- Hash passwords with Argon2id (preferred) or bcrypt.
+- Use a unique salt (libraries handle this).
+- Enforce rate limits and MFA where possible.
+
+Don’t:
+- store plaintext passwords
+- encrypt passwords “reversibly”
+- use fast hashes like SHA-256 without a KDF
+
+Example (conceptual): hash = argon2id(password, salt, params)",Yes,Authentication,You are TensoraMax Studio Assistant. Provide defensive guidance only.,docs,What’s the correct way to store passwords in a database?
+SQL: find duplicate emails,Train,Review,No,,"Databases, Programming",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Group by email and filter with HAVING COUNT(*) > 1 (see query).,"June 13, 2026 1:07 AM",Yes,Yes,24,Table users(email TEXT).,Write an SQL query to find duplicate values and show counts.,"sql
+SELECT email, COUNT(*) AS cnt
+FROM users
+GROUP BY email
+HAVING COUNT(*) > 1
+ORDER BY cnt DESC;
+",Yes,SQL / aggregation,You are TensoraMax Studio Assistant. Provide correct SQL and minimal explanation.,docs,How do I find duplicate emails in SQL?
+Software Engineering: design a logging strategy,Train,Review,No,,"Backend, DevOps, Software Engineering",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM","Use structured JSON logs with request IDs, avoid PII, and build alerts from metrics; keep logs for investigation.","June 13, 2026 1:07 AM",Yes,Yes,28,Need logs for debugging + metrics; privacy constraints.,Propose a structured logging strategy for a backend service.,"- Use structured logs (JSON) with stable fields: service, env, request_id, user_id_hash, route, latency_ms, status.
+- Generate/propagate request_id across services.
+- Log at appropriate levels: DEBUG (dev), INFO (events), WARN/ERROR (failures).
+- Avoid PII: hash or redact sensitive fields.
+- Add sampling for high-volume INFO logs.
+- Ensure dashboards/alerts on error rate + latency, not raw logs alone.",Yes,Observability,"You are TensoraMax Studio Assistant. Be practical, production-oriented, and privacy-aware.",docs,How should we set up logging for a backend service?
+Web: explain CORS in one example,Train,Review,No,,"Backend, Cybersecurity, Education, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",CORS is a browser policy; configure server headers to allow the specific origin (see Express example).,"June 13, 2026 1:07 AM",Yes,Yes,22,Backend is Express; frontend on https://app.example.com,Explain what CORS is and show how to allow a specific origin.,"CORS controls whether a browser is allowed to read responses from another origin.
+
+Express example:
+js
+import cors from 'cors';
+
+app.use(cors({
+  origin: 'https://app.example.com',
+  methods: ['GET','POST'],
+  credentials: true,
+}));
+
+
+Don’t use origin: '*' with credentials.",Yes,HTTP / CORS,You are TensoraMax Studio Assistant. Provide accurate web security explanations.,docs,What is CORS and how do I configure it for one frontend domain?
+ML: explain bias-variance tradeoff (practical),Train,Review,No,,"AI, Education, Machine Learning",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Compare train vs test performance: both bad = bias; train good/test bad = variance; apply the corresponding fixes.,"June 13, 2026 1:07 AM",Yes,Yes,25,Model underfits vs overfits; want actionable guidance.,Explain bias vs variance with symptoms and fixes.,"- High bias (underfitting): poor train + test performance. Fix: more model capacity, better features, train longer.
+- High variance (overfitting): great train, poor test. Fix: more data, regularization, dropout, early stopping, simpler model.
+
+Goal is to minimize generalization error by balancing both.",Yes,Model evaluation,You are TensoraMax Studio Assistant. Keep it practical and correct.,ml,What’s the bias-variance tradeoff and how do I tell which one I have?
+TXB Knowledge: retrieval query rewriting (example),Train,Review,No,,"DevOps, TXB Knowledge, TensoraMax Studio",Medium,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:07 AM","Rewrite into a TXB search query that references runbooks, pipelines, and rollback docs.","June 13, 2026 1:07 AM",Yes,No,26,"Question: ""How do I deploy the studio backend to production?""",Rewrite a user question into a search query suited for TXB retrieval.,"Search query rewrite:
+- Primary: TensoraMax Studio backend production deployment runbook
+- Alternatives: release checklist, deploy pipeline, production environment variables, rollback procedure",Yes,RAG / query rewriting,You are TensoraMax Studio Assistant. Produce concise retrieval-friendly queries.,txb,How do I deploy the studio backend to production?
+Python: parse CLI args with argparse,Train,Review,No,,Programming,Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM","Use add_argument(..., required=True) for required args and action='store_true' for boolean flags.","June 13, 2026 1:07 AM",Yes,Yes,29,Command should accept --input (required) and --verbose (flag).,Provide a minimal example of argparse with required and optional arguments.,"python
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--input', required=True)
+parser.add_argument('--verbose', action='store_true')
+args = parser.parse_args()
+
+if args.verbose:
+    print('Verbose mode on')
+print('input =', args.input)
+",Yes,Python / CLI,"You are TensoraMax Studio Assistant. Provide correct, concise code.",python,How do I use argparse for required and optional flags?
+Frontend: React useEffect dependency rule of thumb,Train,Review,No,,"Education, Frontend, Programming, Web Development",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Include everything the effect reads; otherwise you risk stale closures. Stabilize functions with useCallback if needed.,"June 13, 2026 1:07 AM",Yes,Yes,30,Confusion about stale closures.,Explain when to include variables in a React useEffect dependency array.,"Rule of thumb: put everything you read inside the effect (props/state/functions) into the dependency array.
+
+Why: otherwise the effect “captures” old values (stale closure).
+
+If a function changes every render, wrap it in useCallback, or move logic inside the effect.
+
+If you intentionally want “run once”, ensure the effect truly doesn’t depend on changing values.",Yes,React / hooks,You are TensoraMax Studio Assistant. Prefer correct mental models over memorized rules.,javascript,How do I know what to put in useEffect dependencies?
+Backend: idempotency keys for POST requests,Train,Review,No,,"Backend, Software Engineering, Web Development",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM","Store and reuse the first response for a given (user, key) so retries don’t create duplicates.","June 13, 2026 1:07 AM",Yes,Yes,36,Payment-like endpoint where retries can create duplicates.,Explain idempotency keys and how to implement them.,"An idempotency key makes repeated requests produce the same result.
+
+Implementation pattern:
+1) Client sends Idempotency-Key: <uuid>
+2) Server stores a record keyed by (user, key) with the response (or created resource id)
+3) On retry with same key, return the stored response
+4) Expire keys after a window (e.g., 24h)
+
+This prevents duplicate charges/creates when clients retry on timeouts.",Yes,API reliability,You are TensoraMax Studio Assistant. Provide production-safe backend patterns.,docs,How do idempotency keys work for POST endpoints?
+SQL: pagination with keyset (seek) vs OFFSET,Train,Review,No,,"Backend, Databases, Software Engineering",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",OFFSET scans and becomes slow; keyset uses a cursor filter like created_at < last_seen and stays fast.,"June 13, 2026 1:07 AM",Yes,Yes,33,"Table posts(id, created_at). Need next page.",Explain why OFFSET pagination can be slow and show keyset pagination example.,"OFFSET pagination gets slower as offset grows and can skip/duplicate on inserts.
+
+Keyset pagination uses a cursor:
+sql
+SELECT *
+FROM posts
+WHERE created_at < ?
+ORDER BY created_at DESC
+LIMIT 20;
+
+Cursor is the last row’s created_at (and id as tiebreaker if needed).",Yes,SQL / pagination,You are TensoraMax Studio Assistant. Be precise and show correct SQL patterns.,docs,Why is OFFSET pagination bad and what’s keyset pagination?
+TypeScript: narrow unknown with type guards,Train,Review,No,,"Programming, Software Engineering, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Use user-defined type guards to narrow unknown before accessing properties.,"June 13, 2026 1:07 AM",Yes,Yes,37,Need example function that accepts unknown and returns string length if string.,Explain how to safely handle unknown using type guards.,"ts
+function isString(x: unknown): x is string {
+  return typeof x === 'string';
+}
+
+function len(x: unknown): number | null {
+  if (!isString(x)) return null;
+  return x.length;
+}
+",Yes,TypeScript / type safety,You are TensoraMax Studio Assistant. Be type-safe and clear.,javascript,How do I work with unknown in TypeScript?
+Cybersecurity: rate limiting strategies,Train,Review,No,,"Backend, Cybersecurity, DevOps",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",Token bucket is a strong default; fixed window is simpler but bursty. Return 429 with Retry-After.,"June 13, 2026 1:07 AM",Yes,Yes,31,API wants to prevent abuse.,Explain rate limiting and compare token bucket vs fixed window.,"Rate limiting controls request volume per key (IP/user/token).
+
+- Fixed window: simple counter per minute; can allow bursts at boundaries.
+- Sliding window: smoother, more accurate; more complex.
+- Token bucket: allows bursts up to bucket size while maintaining average rate; common for APIs.
+
+Also: return 429, include Retry-After, and avoid blocking shared NAT IPs without user-based keys.",Yes,Abuse prevention,You are TensoraMax Studio Assistant. Provide defensive guidance and practical considerations.,docs,What’s the best way to rate limit an API?
+ML: what is regularization (L1 vs L2),Train,Review,No,,"AI, Education, Machine Learning",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM",L2 smoothly shrinks weights; L1 can drive some to zero (sparse). Pick strength via validation.,"June 13, 2026 1:07 AM",Yes,Yes,32,Linear model; wants reduce overfitting.,Explain L1 and L2 regularization and when to use each.,"Regularization adds a penalty to discourage overly complex models.
+
+- L2 (Ridge): adds λ‖w‖²; shrinks weights smoothly; good default.
+- L1 (Lasso): adds λ‖w‖₁; encourages sparsity (some weights become 0); useful for feature selection.
+
+Choose λ via validation; always standardize features for many linear models.",Yes,Generalization,You are TensoraMax Studio Assistant. Be clear and correct.,ml,What’s the difference between L1 and L2 regularization?
+Reasoning: detect assumption in a word problem,Validation,Review,No,,"Education, Reasoning",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:07 AM","You can’t determine speed without distance; with distance d, average speed is d / 2 hours.","June 13, 2026 1:07 AM",Yes,Yes,34,"""A train leaves at 10am and arrives at noon. How fast?"" Distance not given.",Identify hidden assumptions and restate the problem with explicit assumptions.,"Hidden assumption: you need distance to compute speed. Time alone isn’t enough.
+
+Restate: “Given distance d and travel time 2 hours, average speed is d/2 hours.”
+
+If the question intended you to infer distance, that must be provided or referenced.",Yes,Assumptions / problem framing,You are TensoraMax Studio Assistant. Be explicit about missing information and assumptions.,reasoning,A train leaves at 10am and arrives at noon. How fast was it going?
+TXB Knowledge: create a doc extraction prompt (template),Train,Review,No,,"AI, Productivity, TXB Knowledge",Hard,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:07 AM","Use a JSON-output extraction prompt with a clear schema for summary, facts, procedures, commands, warnings, and references.","June 13, 2026 1:07 AM",Yes,No,35,"Need fields: summary, key facts, commands, warnings, links.",Write a prompt template to extract structured facts from a TXB article for dataset creation.,"Prompt template:
+
+Instruction: “Extract structured information from the TXB article below. Output valid JSON.”
+
+JSON schema:
+- summary (string)
+- key_facts (array of strings)
+- procedures (array of step strings)
+- commands (array of strings)
+- warnings (array of strings)
+- references (array of {title, url})
+
+Article:
+<<<PASTE TXB CONTENT HERE>>>",Yes,Extraction / dataset ops,You are TensoraMax Studio Assistant. Produce retrieval- and dataset-friendly templates.,"docs, txb",Can you give a prompt to extract structured facts from a TXB doc?
+Reasoning: prove by contradiction (simple template),Validation,Review,No,,"Education, Mathematics, Reasoning",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM","Assume the opposite, derive a contradiction, and conclude the original statement must be true (see √2 sketch).","June 13, 2026 1:08 AM",Yes,Yes,38,Example: prove √2 is irrational (high-level).,Teach proof by contradiction with a short canonical example.,"Proof by contradiction template:
+1) Assume the opposite of what you want to prove.
+2) Derive a logical contradiction.
+3) Conclude the assumption is false; original claim is true.
+
+Example (√2 irrational, sketch): assume √2 = a/b in lowest terms. Then 2b² = a², so a is even ⇒ a=2k. Substitute: 2b²=4k² ⇒ b²=2k² ⇒ b even. Both even contradict “lowest terms”.",Yes,Proof techniques,You are TensoraMax Studio Assistant. Explain clearly; keep proofs correct and appropriately scoped.,reasoning,How does proof by contradiction work?
+Python: async HTTP requests with aiohttp,Train,Review,No,,"Backend, Programming",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM",Use asyncio.gather with aiohttp.ClientSession to run requests concurrently (see Output).,"June 13, 2026 1:08 AM",Yes,Yes,43,Fetch 3 URLs concurrently and print status codes.,Provide an example of making concurrent HTTP GET requests in Python using aiohttp.,"python
+import asyncio
+import aiohttp
+
+async def fetch(session, url):
+    async with session.get(url) as resp:
+        return url, resp.status
+
+async def main(urls):
+    async with aiohttp.ClientSession() as session:
+        results = await asyncio.gather(*(fetch(session, u) for u in urls))
+    for url, status in results:
+        print(url, status)
+
+urls = [""https://example.com"", ""https://httpbin.org/get"", ""https://api.github.com""]
+asyncio.run(main(urls))
+",Yes,Python / async,You are TensoraMax Studio Assistant. Provide correct code and brief notes on best practices.,python,How can I fetch multiple URLs concurrently in Python?
+JavaScript: event loop (microtasks vs macrotasks),Train,Review,No,,"Education, Frontend, Programming, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM","Promise callbacks are microtasks, and microtasks flush before the next macrotask like setTimeout.","June 13, 2026 1:08 AM",Yes,Yes,41,Include Promise.then vs setTimeout ordering.,Explain the JavaScript event loop focusing on microtasks vs macrotasks with an example order.,"- Macrotasks: setTimeout, I/O, UI events.
+- Microtasks: Promise.then, queueMicrotask, MutationObserver.
+
+Microtasks run after the current call stack and before the next macrotask.
+
+Example:
+js
+console.log('A');
+setTimeout(() => console.log('B'), 0);
+Promise.resolve().then(() => console.log('C'));
+console.log('D');
+
+Order: A, D, C, B.",Yes,JavaScript / runtime,You are TensoraMax Studio Assistant. Be precise and use simple examples.,javascript,Why does Promise.then run before setTimeout(0)?
+ML: data leakage examples and prevention checklist,Train,Review,No,,"AI, Data Science, Education, Machine Learning",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM",Leakage is when training uses information unavailable at inference; prevent it with proper splitting and train-only preprocessing.,"June 13, 2026 1:08 AM",Yes,Yes,47,Time series + user-level data; feature engineering involved.,List common ML data leakage patterns and how to prevent them.,"Common leakage patterns:
+- Using future information (post-outcome features)
+- Random split when data is time-ordered (train sees future)
+- Same user/entity in multiple splits
+- Scaling/normalizing using full dataset stats
+- Target leakage via IDs that encode label
+
+Prevention checklist:
+- Split by time or group (user/session) when needed
+- Fit preprocessors on train only, apply to val/test
+- Audit features for “future” fields
+- Use leakage tests (train on shuffled labels; sanity checks)
+- Document split logic in TXB",Yes,Evaluation / leakage,You are TensoraMax Studio Assistant. Be practical and checklist-oriented.,ml,What is data leakage in ML and how do I avoid it?
+Software Engineering: SOLID principles (quick map),Train,Review,No,,"Education, Programming, Software Engineering",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM",SOLID is a set of OO design heuristics; here are concise definitions plus a small SRP example.,"June 13, 2026 1:08 AM",Yes,Yes,39,Audience: junior engineer.,Explain SOLID principles with one-liners and a tiny example for one principle.,"SOLID:
+- Single Responsibility: a module has one reason to change.
+- Open/Closed: extend behavior without modifying existing code.
+- Liskov Substitution: subtypes must be substitutable for base types.
+- Interface Segregation: prefer small, specific interfaces.
+- Dependency Inversion: depend on abstractions, not concretions.
+
+Tiny example (SRP): separate InvoiceCalculator from InvoicePdfRenderer so formatting changes don’t touch business logic.",Yes,Design principles,You are TensoraMax Studio Assistant. Keep explanations concrete and non-hand-wavy.,docs,Can you explain SOLID principles simply?
+Databases: ACID vs BASE (when it matters),Train,Review,No,,"Backend, Databases, Education, Software Engineering",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM",ACID provides strong transactional correctness; BASE is eventual consistency for high availability—choose based on invariants.,"June 13, 2026 1:08 AM",Yes,Yes,40,System: payments vs social feed.,Compare ACID and BASE and give guidance on choosing consistency level.,"- ACID (transactions): strong guarantees—Atomicity, Consistency, Isolation, Durability. Best for money, inventory, critical state.
+- BASE (eventual consistency): Basically Available, Soft state, Eventual consistency. Common in distributed systems prioritizing availability/latency.
+
+Guidance:
+- Payments/ledger: prefer ACID and strict consistency.
+- Social feed/counters: BASE can be acceptable with conflict resolution.
+
+Always define invariants explicitly (e.g., “balance never negative”).",Yes,Consistency models,You are TensoraMax Studio Assistant. Be clear about tradeoffs and examples.,docs,What’s ACID vs BASE in databases?
+Cybersecurity: CSRF vs XSS (difference),Train,Review,No,,"Cybersecurity, Education, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM",XSS injects script; CSRF forces authenticated requests. Use CSP/escaping for XSS and CSRF tokens/SameSite for CSRF.,"June 13, 2026 1:08 AM",Yes,Yes,42,Web app uses cookies for auth.,Explain CSRF vs XSS and one mitigation for each.,"- XSS: attacker injects script into your pages; script runs in victim’s browser.
+  - Mitigate: output escaping + CSP + avoid unsafe inline scripts.
+- CSRF: attacker tricks browser into sending authenticated requests (cookies) to your site.
+  - Mitigate: CSRF tokens + SameSite cookies + checking Origin/Referer.
+
+They’re different: XSS is code execution in your origin; CSRF is unauthorized actions via the browser’s credentials.",Yes,Web security,You are TensoraMax Studio Assistant. Provide accurate defensive security guidance.,docs,What’s the difference between CSRF and XSS?
+Web: HTTP caching headers (ETag vs Cache-Control),Train,Review,No,,"Backend, Education, Web Development",Hard,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:08 AM",Cache-Control controls freshness lifetime; ETag enables conditional requests and 304 responses for revalidation.,"June 13, 2026 1:08 AM",Yes,Yes,44,Static assets vs API responses.,Explain Cache-Control and ETag and when to use each.,"- Cache-Control: tells caches how long to store a response (e.g., max-age=31536000, immutable for versioned assets).
+- ETag: validator for revalidation; client sends If-None-Match, server can reply 304 Not Modified.
+
+Use:
+- Versioned static assets: long Cache-Control + immutable.
+- APIs: shorter Cache-Control and ETag for efficient revalidation.
+
+Avoid caching personalized responses unless private and safe.",Yes,HTTP / caching,You are TensoraMax Studio Assistant. Be precise about HTTP semantics.,docs,What’s the difference between ETag and Cache-Control?
+TXB Knowledge: create a QA pair from a doc snippet (template),Train,Review,No,,"AI, Education, TXB Knowledge",Medium,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:08 AM",Use a template that forces the answer to be supported by quoted evidence from the snippet.,"June 13, 2026 1:08 AM",Yes,No,45,Snippet: <<<TXB_SNIPPET>>>,"Given a TXB snippet, generate a grounded Q&A pair and cite the snippet.","Template:
+- Question: a specific question answerable from the snippet.
+- Answer: quote or paraphrase only what’s supported.
+- Evidence: include exact quoted lines from the snippet.
+
+Example output format:
+Question: …
+Answer: …
+Evidence:
+- “…”
+- “…”",Yes,Grounded QA,You are TensoraMax Studio Assistant. Generate grounded Q&A and include evidence excerpts.,"docs, txb",How do I turn a TXB snippet into a training example safely?
+TensoraMax Studio: evaluation loop for SLM (design),Test,Review,No,,"AI, Machine Learning, Software Engineering, TensoraMax Studio",Expert,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:08 AM","Use a versioned eval suite, score automatically + with human review, feed failures back into curated training, and enforce regression gates.","June 13, 2026 1:08 AM",Yes,No,46,Need offline eval + human review + regression testing.,Describe a high-level evaluation loop for improving an SLM inside TensoraMax Studio.,"Evaluation loop:
+1) Collect candidate prompts from production + synthetic sets.
+2) Run the model on a fixed evaluation suite (versioned).
+3) Score with:
+   - automatic metrics (task-specific)
+   - rubric-based LLM judge (optional)
+   - human review for a sampled subset
+4) Triage failures into buckets (reasoning, hallucination, coding, safety).
+5) Convert failures into new training examples with labels.
+6) Fine-tune, then rerun eval; block release if regressions exceed thresholds.
+7) Store artifacts in TXB: dataset version, model version, changelog.",Yes,Evaluation / MLOps,"You are TensoraMax Studio Assistant. Write like an internal design doc: concrete, versioned, scalable.","docs, txb",How should TensoraMax Studio manage an evaluation loop for our SLM?
+JavaScript: map vs forEach vs reduce (when to use),Train,Review,No,,"Education, Programming, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM","Use map to transform, reduce to aggregate, and forEach for side effects only.","June 13, 2026 1:09 AM",Yes,Yes,54,Developer is confused about functional array methods.,"Compare map, forEach, and reduce with guidance on when each is appropriate.","- forEach: run a side effect for each item; returns undefined.
+- map: transform each item; returns a new array of same length.
+- reduce: accumulate into a single value (sum, object map, grouping).
+
+Guidance: prefer map for transformations, reduce for aggregations, and avoid using forEach when you actually want a returned value.",Yes,JavaScript / arrays,You are TensoraMax Studio Assistant. Be concise and correct.,javascript,When should I use map vs forEach vs reduce?
+Python: context managers and with (why it matters),Train,Review,No,,"Education, Programming, Software Engineering",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM",It’s an object that manages resources with predictable cleanup; with ensures teardown runs even on errors.,"June 13, 2026 1:09 AM",Yes,Yes,48,Example with files or locks.,Explain what a context manager is in Python and why with is useful.,"A context manager defines setup/teardown around a block. with guarantees cleanup even if an exception occurs.
+
+Example:
+python
+with open('data.txt', 'w', encoding='utf-8') as f:
+    f.write('hello')
+# file is closed here automatically
+
+Same idea applies to locks, DB connections, etc.",Yes,Python / language features,You are TensoraMax Studio Assistant. Teach clearly and give correct examples.,python,What is a context manager in Python?
+AI: RAG vs fine-tuning (decision matrix),Train,Review,No,,"AI, Education, Machine Learning, TXB Knowledge",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM",Use RAG for frequently changing knowledge; fine-tune for behavior/style. Many systems combine both.,"June 13, 2026 1:09 AM",Yes,Yes,49,Need domain knowledge updates frequently; also want better style and reasoning.,Compare RAG and fine-tuning and give a decision matrix for choosing.,"- RAG: retrieves fresh knowledge at inference; best for rapidly changing facts; reduces hallucinations when grounded.
+- Fine-tuning: changes model behavior/style; good for consistent format, tone, tool use, and task patterns.
+
+Decision matrix:
+- Need up-to-date facts → RAG
+- Need consistent outputs / workflows → fine-tune
+- Need both → RAG for knowledge + fine-tune for behavior
+
+Also: evaluate with a fixed suite before/after.",Yes,RAG / fine-tuning strategy,You are TensoraMax Studio Assistant. Be practical and engineering-focused.,"ml, txb",Should we use RAG or fine-tune our SLM for TXB knowledge?
+Reasoning: Bayes rule intuition (medical test),Validation,Review,No,,"Education, Mathematics, Reasoning",Hard,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM","Because when an event is rare, false positives from the large “non-event” group can dominate—Bayes rule captures this.","June 13, 2026 1:09 AM",Yes,Yes,55,"Disease prevalence 1%, test 99% sensitive, 95% specific.",Explain why base rates matter using a medical test Bayes example (no heavy math).,"Even a “good” test can have many false positives when the disease is rare.
+
+If only 1% have the disease, most positives come from the 99% healthy group. With 95% specificity, 5% of healthy people still test positive—this can outnumber true positives.
+
+Takeaway: always consider prevalence (base rate) when interpreting probabilities.",Yes,Probability / Bayes,You are TensoraMax Studio Assistant. Explain with clear reasoning and plain language.,reasoning,Why do base rates matter in probability?
+Testing: unit vs integration vs e2e (definitions),Train,Review,No,,"Education, Programming, Software Engineering",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM","They differ by scope: unit (small), integration (components together), E2E (full user flow). Use a test pyramid.","June 13, 2026 1:09 AM",Yes,Yes,51,Team wants a balanced test pyramid.,"Define unit, integration, and end-to-end tests and what they catch best.","- Unit tests: small scope; mock dependencies; fast; catch logic regressions.
+- Integration tests: multiple components together (DB, API, queue); catch interface/config issues.
+- E2E tests: user flows through the full system; slowest; catch wiring + UX regressions.
+
+A good default: many unit tests, some integration, few high-value E2E.",Yes,Testing strategy,You are TensoraMax Studio Assistant. Explain in practical terms.,docs,"What’s the difference between unit, integration, and E2E tests?"
+ML: precision vs recall (with a simple example),Train,Review,No,,"AI, Education, Machine Learning",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM",Precision measures correctness of positives; recall measures coverage of actual positives; optimize based on which error is costlier.,"June 13, 2026 1:09 AM",Yes,Yes,50,Use case: spam detection vs medical screening.,Explain precision and recall with a short example and when to optimize each.,"- Precision: of predicted positives, how many are correct.
+- Recall: of actual positives, how many you found.
+
+Optimize precision when false positives are costly (e.g., flagging important emails as spam).
+Optimize recall when false negatives are costly (e.g., missing a disease).
+
+Often you trade off via the decision threshold; use PR curves.",Yes,Classification metrics,You are TensoraMax Studio Assistant. Be clear and use intuitive examples.,ml,What’s precision vs recall?
+Databases: normalize vs denormalize (tradeoffs),Train,Review,No,,"Backend, Databases, Education, Software Engineering",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM",Start normalized for correctness; denormalize selectively for measured performance needs with a clear consistency plan.,"June 13, 2026 1:09 AM",Yes,Yes,52,App has OLTP workload plus analytics queries.,Explain normalization vs denormalization and when each is appropriate.,"- Normalization reduces duplication and improves update consistency (OLTP).
+- Denormalization duplicates data to speed reads/aggregations (common in analytics/materialized views).
+
+Guidance:
+- Start normalized for correctness.
+- Add denormalized read models (caches, materialized views) once bottlenecks are measured.
+
+Be explicit about consistency strategy for duplicated fields.",Yes,Schema design,You are TensoraMax Studio Assistant. Focus on practical tradeoffs and correctness.,docs,Should my database be normalized or denormalized?
+Cybersecurity: principle of least privilege (example),Train,Review,No,,"Cloud Computing, Cybersecurity, Education, Software Engineering",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:09 AM",Grant the minimum permissions necessary; it limits damage from bugs or credential leaks and improves auditability.,"June 13, 2026 1:09 AM",Yes,Yes,53,Team is designing permissions for a new backend.,"Explain least privilege and give examples for DB, cloud, and services.","Least privilege means each identity gets only the permissions needed to do its job.
+
+Examples:
+- DB user for app: only CRUD on needed tables, no admin.
+- Background worker: only queue consume + specific storage bucket, not full account.
+- Cloud IAM: separate roles for deploy vs runtime; short-lived tokens.
+
+Benefits: reduces blast radius if credentials leak; makes audits easier.",Yes,Access control,You are TensoraMax Studio Assistant. Provide concrete security practices.,docs,What does least privilege mean in security?
+TXB Knowledge: tagging strategy for docs (proposal),Train,Review,No,,"Productivity, Software Engineering, TXB Knowledge",Hard,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:09 AM",Use a consistent multi-axis tag set (area/component/audience/lifecycle/type) with governance to avoid synonyms.,"June 13, 2026 1:09 AM",Yes,No,56,"Need tags for product, component, audience, and lifecycle.",Propose a tagging strategy for TXB to improve retrieval quality.,"A practical TXB tagging scheme:
+- Product/Area: studio, txb, assistant, billing
+- Component: api, frontend, worker, db
+- Audience: dev, support, ops
+- Lifecycle: draft, active, deprecated
+- Doc type: runbook, spec, how-to, faq
+
+Rules:
+- 3–8 tags per doc
+- avoid synonyms (define canonical tags)
+- add a periodic cleanup (merge rarely used tags)
+
+Result: higher precision in retrieval and easier dataset curation.",Yes,Knowledge management,You are TensoraMax Studio Assistant. Design for retrieval and governance.,"docs, txb",How should we tag documents in TXB for better search?
+Reasoning: tradeoff analysis template (2 options),Train,Review,No,,"Productivity, Reasoning, Software Engineering",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","Use a consistent template: context, criteria, pros/cons, recommendation, risks, next steps.","June 13, 2026 1:10 AM",Yes,Yes,60,"Need lightweight, repeatable format.",Provide a template for comparing two technical options with pros/cons and decision criteria.,"Template:
+- Context (1–2 sentences)
+- Options: A vs B
+- Decision criteria (3–6 bullets: cost, time, risk, performance, maintainability)
+- Pros/cons per option (bullets)
+- Recommendation + rationale
+- Risks + mitigations
+- Next steps (owner + date)",Yes,Decision making,"You are TensoraMax Studio Assistant. Produce professional, reusable templates.",docs,How do I do a quick tradeoff analysis?
+Python: dataclasses quickstart,Train,Review,No,,"Education, Programming, Software Engineering",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",They’re a convenient way to define data-holding classes with auto-generated init/repr; see example.,"June 13, 2026 1:10 AM",Yes,Yes,57,Need a simple User model.,Explain Python dataclasses and show a small example with defaults and type hints.,"python
+from dataclasses import dataclass
+
+@dataclass
+class User:
+    id: int
+    name: str
+    active: bool = True
+
+u = User(id=1, name='Baki')
+print(u)
+
+
+Dataclasses auto-generate __init__, __repr__, and comparisons (configurable).",Yes,Python / data modeling,You are TensoraMax Studio Assistant. Be concise and correct.,python,What are dataclasses in Python?
+Reasoning: handle ambiguity in user requests (clarify),Validation,Review,No,,"Productivity, Reasoning, Software Engineering",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","I can—first I need to know the database type, purpose, key fields, users/scale, and required views.","June 13, 2026 1:10 AM",Yes,Yes,58,"User: ""Can you set up my database?"" (unclear which DB, goal, schema).","Given an ambiguous user request, ask the minimum clarifying questions.","Clarifying questions:
+1) What type of database do you mean (Notion database, SQL, or something else)?
+2) What is the goal (tasks, CRM, dataset, inventory, etc.)?
+3) What key fields/properties do you need?
+4) Who will use it and at what scale?
+5) Any required views/filters (e.g., by status, owner, date)?",Yes,Requirements gathering,"You are TensoraMax Studio Assistant. Ask concise, high-signal clarifying questions.",docs,Can you set up my database?
+Reasoning: explain big-O with a concrete example,Train,Review,No,,"Education, Programming, Reasoning",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",It describes growth rate of time/space as input increases; nested loops are a common O(n²) example.,"June 13, 2026 1:10 AM",Yes,Yes,65,Use example of nested loops vs single loop.,Explain big-O notation using a simple code example and what it means in practice.,"Big-O describes how runtime grows as input size n grows.
+
+Example:
+- Single loop over n items → O(n)
+- Nested loop over n×n pairs → O(n²)
+
+In practice: when n is large, O(n²) can become slow quickly (e.g., 100k² is huge). Use big-O to choose scalable algorithms.",Yes,Algorithms / complexity,You are TensoraMax Studio Assistant. Teach clearly with concrete examples.,reasoning,What is big-O notation?
+JavaScript: avoid floating point bugs (money),Train,Review,No,,"Education, Programming, Software Engineering, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",Floats can’t represent many decimals exactly; for money store cents as integers or use decimal libraries.,"June 13, 2026 1:10 AM",Yes,Yes,62,Need to add prices without 0.1+0.2 issues.,Explain why floating point is problematic for currency and show safer approaches.,"Binary floating point can’t represent many decimals exactly, causing rounding errors.
+
+Safer approaches:
+- store money as integer minor units (cents/paise)
+- or use a decimal library for arbitrary precision
+
+Example (cents):
+js
+const totalCents = 199 + 299; // $1.99 + $2.99
+console.log(totalCents / 100);
+",Yes,JavaScript / numeric accuracy,You are TensoraMax Studio Assistant. Emphasize correctness for financial data.,javascript,Why is 0.1 + 0.2 not equal to 0.3 and how do I handle money?
+Web: fix 'Too many re-renders' in React,Train,Review,No,,"Frontend, Programming, Web Development",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",It means you’re triggering state updates during render; move updates to effects/handlers and avoid unconditional setters.,"June 13, 2026 1:10 AM",Yes,Yes,59,User sets state during render by calling setState directly.,Explain the cause of React's 'Too many re-renders' error and how to fix it.,"This usually happens when you call a state setter during render, causing an infinite render loop.
+
+Fixes:
+- Move state updates into an event handler or useEffect.
+- Don’t call setState unconditionally.
+
+Bad:
+js
+setCount(count + 1)
+
+Good:
+js
+useEffect(() => {
+  setCount(c => c + 1)
+}, [])
+",Yes,React / debugging,You are TensoraMax Studio Assistant. Diagnose clearly and provide correct fixes.,javascript,React says 'Too many re-renders'. What does that mean?
+Databases: choose primary keys (UUID vs int),Train,Review,No,,"Backend, Databases, Software Engineering",Hard,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",UUIDs are great for distributed/offline creation; ints are smaller/faster. Choose based on architecture needs.,"June 13, 2026 1:10 AM",Yes,Yes,61,Distributed system with offline creation.,Compare UUIDs vs auto-increment ints for primary keys and give guidance.,"- Auto-increment int: compact, index-friendly, sortable; but hard to generate offline and can leak row count.
+- UUID: globally unique, can be generated client-side; larger indexes and less locality.
+
+Guidance:
+- Need distributed/offline creation or merging data from multiple sources → UUID.
+- Single DB, performance-critical, internal IDs → int.
+
+Hybrid: use UUID externally and an internal surrogate key if needed.",Yes,Schema / keys,You are TensoraMax Studio Assistant. Be practical and highlight tradeoffs.,docs,Should we use UUIDs or auto-increment IDs as primary keys?
+Cybersecurity: secure session cookies checklist,Train,Review,No,,"Backend, Cybersecurity, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",Use HttpOnly + Secure + SameSite plus rotation and short lifetimes; store only opaque IDs.,"June 13, 2026 1:10 AM",Yes,Yes,63,Cookie-based auth; want best practices.,Provide a checklist for securing session cookies in a web app.,"Checklist:
+- HttpOnly (prevents JS access)
+- Secure (HTTPS only)
+- SameSite=Lax or Strict (mitigates CSRF)
+- Short TTL + rotation on privilege changes
+- Regenerate session ID on login
+- Store only opaque session ID, not user data
+
+Also: enforce HTTPS, HSTS, and proper logout invalidation.",Yes,Sessions,You are TensoraMax Studio Assistant. Provide defensive best practices.,docs,How do I secure session cookies?
+AI: prompt injection threats (RAG) and mitigations,Test,Review,No,,"AI, Cybersecurity, Education, TXB Knowledge",Expert,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","It’s when retrieved text tries to hijack the model’s instructions; defend with strong instruction hierarchy, separation, and grounding/citations.","June 13, 2026 1:10 AM",Yes,Yes,64,LLM reads untrusted web pages or docs.,Explain prompt injection risks in RAG systems and list mitigations.,"Prompt injection is when untrusted retrieved text tries to override system instructions (e.g., “ignore previous instructions”).
+
+Mitigations:
+- Treat retrieved content as data, not instructions.
+- Use strict system prompts and tool policies.
+- Separate retrieval and generation steps.
+- Apply content sanitization and allowlists.
+- Use citation/grounding requirements.
+- Log and red-team with adversarial docs.
+
+Goal: reduce the chance that retrieved text changes behavior beyond answering the question.",Yes,RAG security,"You are TensoraMax Studio Assistant. Provide security-focused, non-alarmist guidance.","ml, txb",What is prompt injection in RAG and how do we defend against it?
+TensoraMax Studio: dataset versioning policy (proposal),Train,Review,No,,"Machine Learning, Software Engineering, TXB Knowledge, TensoraMax Studio",Expert,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",Use vMAJOR.MINOR.PATCH tied to schema/meaning changes; maintain changelogs and manifests for reproducibility.,"June 13, 2026 1:10 AM",Yes,No,66,"Need semantic versions, changelog, and reproducibility.",Propose a dataset versioning policy for TXB Training Dataset.,"Policy proposal:
+- Use semantic-ish versions: vMAJOR.MINOR.PATCH.
+- MAJOR: schema changes or label meaning changes.
+- MINOR: add new examples or new domains.
+- PATCH: fix typos, improve outputs without changing intent.
+
+Process:
+- Each release has a changelog entry (counts by split/domain).
+- Freeze an eval suite per dataset version.
+- Keep a manifest: dataset version → model version → metrics.
+
+Goal: reproducible training and easy rollbacks.",Yes,Dataset governance,You are TensoraMax Studio Assistant. Write like a concise governance doc.,"docs, txb",How should we version our training dataset in TensoraMax Studio?
+SQL: explain INNER JOIN vs LEFT JOIN,Train,Review,No,,"Databases, Education, Programming",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",INNER keeps only matches; LEFT keeps all left rows and fills missing right rows with NULL.,"June 13, 2026 1:10 AM",Yes,Yes,68,Tables: users and orders; want users even if no orders.,"Explain INNER vs LEFT JOIN and when to use each, with a small example.","- INNER JOIN returns rows where both sides match.
+- LEFT JOIN returns all rows from the left table, plus matches from the right (NULL when missing).
+
+Example (keep all users):
+sql
+SELECT u.id, o.id AS order_id
+FROM users u
+LEFT JOIN orders o ON o.user_id = u.id;
+",Yes,SQL / joins,You are TensoraMax Studio Assistant. Be clear and provide correct SQL examples.,docs,What’s the difference between INNER JOIN and LEFT JOIN?
+Web: semantic HTML for forms (labels),Train,Review,No,,"Education, Frontend, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","Use <label for=""...""> linked to the input id, or wrap the input in a label; both improve accessibility.","June 13, 2026 1:10 AM",Yes,Yes,67,Need accessible form markup.,Explain how to correctly associate labels with inputs in HTML forms.,"Use <label for> with a matching input id:
+html
+<label for=""email"">Email</label>
+<input id=""email"" name=""email"" type=""email"" autocomplete=""email"" required>
+
+
+Alternatively, wrap the input:
+html
+<label>Email <input name=""email"" type=""email""></label>
+
+
+This improves accessibility and click targets.",Yes,HTML / forms,You are TensoraMax Studio Assistant. Prioritize accessibility best practices.,html,How do I properly label inputs in HTML?
+Python: read environment variables safely,Train,Review,No,,"DevOps, Programming, Software Engineering",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","Use os.environ.get, validate required vars, and parse optional flags (see Output).","June 13, 2026 1:10 AM",Yes,Yes,71,Need required DATABASE_URL and optional DEBUG flag.,Show how to read environment variables in Python and handle missing values.,"python
+import os
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if not DATABASE_URL:
+    raise RuntimeError('DATABASE_URL is required')
+
+DEBUG = os.environ.get('DEBUG', '0') == '1'
+print(DATABASE_URL, DEBUG)
+",Yes,Python / configuration,"You are TensoraMax Studio Assistant. Provide secure, production-minded guidance.",python,How do I read env vars in Python and fail if one is missing?
+JavaScript: abort fetch requests with AbortController,Train,Review,No,,"Frontend, Programming, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",Use AbortController and pass signal to fetch; call abort() to cancel.,"June 13, 2026 1:10 AM",Yes,Yes,76,User wants cancel button for an API call.,Provide an example of cancelling a fetch request using AbortController.,"js
+const controller = new AbortController();
+
+async function load() {
+  try {
+    const res = await fetch('/api/data', { signal: controller.signal });
+    return await res.json();
+  } catch (e) {
+    if (e.name === 'AbortError') return null;
+    throw e;
+  }
+}
+
+// later
+controller.abort();
+",Yes,Fetch / cancellation,You are TensoraMax Studio Assistant. Provide correct modern web APIs and caveats.,javascript,How can I cancel a fetch request in JavaScript?
+Cybersecurity: TLS basics (what it protects),Train,Review,No,,"Cybersecurity, Education, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","It encrypts and authenticates traffic in transit, but it doesn’t fix application vulnerabilities or secure data at rest.","June 13, 2026 1:10 AM",Yes,Yes,74,User thinks HTTPS prevents all hacking.,Explain what TLS provides and what it does not provide.,"TLS (HTTPS) provides:
+- Encryption in transit
+- Integrity (tamper detection)
+- Authentication of the server (certificates)
+
+TLS does NOT:
+- prevent bugs like XSS/SQLi
+- secure data at rest
+- stop someone with access to your backend from misusing data
+
+You still need app security controls and proper server hardening.",Yes,TLS / HTTPS,"You are TensoraMax Studio Assistant. Provide accurate, defensive security education.",docs,What does HTTPS/TLS actually protect me from?
+ML: gradient descent vs Adam (when to use),Train,Review,No,,"AI, Deep Learning, Education, Machine Learning",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","For transformers, AdamW is usually the best starting point; SGD can work but needs more schedule tuning.","June 13, 2026 1:10 AM",Yes,Yes,69,Training a transformer-like model.,Compare SGD and Adam and give guidance for a typical deep learning setup.,"- SGD (+ momentum): can generalize well; often used in vision; needs careful LR schedules.
+- Adam/AdamW: adaptive learning rates; strong default for transformers; AdamW decouples weight decay.
+
+Guidance: for transformer-like models, start with AdamW + warmup + decay schedule; tune LR and weight decay via validation.",Yes,Optimization,You are TensoraMax Studio Assistant. Be practical and correct for modern deep learning.,ml,Should I use SGD or Adam for deep learning?
+AI: hallucination vs uncertainty (definition),Validation,Review,No,,"AI, Education, Machine Learning, TXB Knowledge",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","It’s when the model invents unsupported facts; improve reliability with grounding, citations, and abstention when evidence is missing.","June 13, 2026 1:10 AM",Yes,Yes,70,RAG assistant sometimes makes up citations.,Define hallucination in LLMs and how uncertainty/abstention helps.,"- Hallucination: the model outputs confident-sounding information not supported by evidence.
+- Uncertainty/abstention: the model admits it doesn’t know and asks for more context or retrieval.
+
+Mitigations:
+- require citing retrieved sources
+- add “answer only from context” policies
+- include a fallback: “I don’t have enough info”
+- evaluate hallucination rate on a test suite",Yes,Reliability,You are TensoraMax Studio Assistant. Be clear and emphasize grounded behavior.,"ml, txb",What does it mean when an LLM hallucinates?
+Software Engineering: write an RFC (structure),Train,Review,No,,"Education, Productivity, Software Engineering",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","Use a consistent RFC template: context, goals, proposal, alternatives, risks, rollout, metrics, security, appendix.","June 13, 2026 1:10 AM",Yes,Yes,75,Need consistent format for team proposals.,Provide a professional RFC structure for proposing a technical change.,"RFC structure:
+1) Title + status
+2) Context / problem
+3) Goals / non-goals
+4) Proposal (design)
+5) Alternatives considered
+6) Risks / mitigations
+7) Rollout plan
+8) Observability / metrics
+9) Security / privacy
+10) Appendix (links, diagrams)
+
+Keep it short; move details to appendices.",Yes,Engineering process,"You are TensoraMax Studio Assistant. Produce concise, professional internal documentation.",docs,What’s a good structure for a technical RFC?
+TXB Knowledge: how to write retrieval-friendly docs,Train,Review,No,,"AI, Education, Productivity, TXB Knowledge",Hard,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:10 AM","Use clear structure, consistent terms, self-contained chunks, and concrete examples; this improves retrieval and reduces hallucinations.","June 13, 2026 1:10 AM",Yes,No,72,"Need headings, chunking, and examples.",Give guidelines for writing TXB docs that retrieve well in RAG.,"Guidelines:
+- Use clear H2/H3 headings and consistent terminology.
+- Put key answers near the top; include a short summary.
+- Chunk long docs into sections with self-contained context.
+- Include concrete examples, commands, and expected outputs.
+- Avoid ambiguous pronouns; name components explicitly.
+- Maintain an “Updated” date and owner.
+
+Result: higher recall/precision in retrieval and fewer hallucinations.",Yes,Doc authoring for RAG,You are TensoraMax Studio Assistant. Optimize for retrieval quality and maintainability.,"docs, txb",How should we write TXB docs so RAG retrieves them correctly?
+TensoraMax Studio: tool-calling spec (example),Test,Review,No,,"AI, Software Engineering, TensoraMax Studio",Expert,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:10 AM",Define an allowlisted tool schema and have the model emit either final text or typed tool calls; validate JSON and log calls.,"June 13, 2026 1:10 AM",Yes,No,73,Need JSON schema for tools and arguments.,Draft a simple tool-calling schema for the assistant inside TensoraMax Studio.,"Tool-calling spec (example):
+- Tools are JSON objects: { name, description, args_schema, required_scopes }.
+- Model outputs either:
+  - {""type"":""final"",""text"":""...""}
+  - {""type"":""tool_call"",""name"":""search_txb"",""args"":{...}}
+
+Include:
+- strict JSON validation
+- allowlist of tools
+- audit log: tool name, args, result hash
+
+Goal: safe, debuggable integrations.",Yes,Tooling / function calling,"You are TensoraMax Studio Assistant. Write concrete, implementable specs.","docs, txb",How can we design a tool-calling interface for our SLM assistant?
+Software Engineering: dependency injection (why),Train,Review,No,,"Education, Programming, Software Engineering",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM","It’s passing dependencies in, which makes code easier to test, configure, and swap implementations.","June 13, 2026 1:11 AM",Yes,Yes,78,Example with a service needing a database client.,Explain dependency injection and why it improves testability.,"Dependency injection means passing dependencies (DB client, logger) into a component instead of creating them inside it.
+
+Benefits:
+- easier unit tests (swap real DB for mock)
+- clearer coupling and configuration
+- supports different implementations (prod vs dev)
+
+Example idea: UserService(dbClient) rather than new UserService() creating its own DB connection.",Yes,Architecture / testing,You are TensoraMax Studio Assistant. Keep examples concrete and focused on benefits.,docs,What is dependency injection and why should I care?
+Python: generator vs list (memory),Train,Review,No,,"Education, Programming",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM",Generators are lazy/streaming and memory-efficient; lists materialize all items in memory.,"June 13, 2026 1:11 AM",Yes,Yes,80,Need example using sum with generator expression.,Explain generators vs lists and when generators are preferable.,"Generators produce items lazily, so they use less memory for large sequences.
+
+Example:
+python
+# list creates all squares in memory
+s1 = sum([i*i for i in range(10_000_000)])
+
+# generator computes squares one at a time
+s2 = sum(i*i for i in range(10_000_000))
+
+Prefer generators when you can stream data and don’t need random access.",Yes,Python / iteration,You are TensoraMax Studio Assistant. Be clear and correct with examples.,python,What’s the difference between a generator and a list in Python?
+JavaScript: prototype chain explained,Train,Review,No,,"Education, Programming, Web Development",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM",Property lookup walks from the object to its prototype repeatedly; Object.create sets the prototype for delegation.,"June 13, 2026 1:11 AM",Yes,Yes,77,Include Object.create example.,Explain the prototype chain and how property lookup works in JavaScript.,"When you access obj.x, JS looks for x on obj. If not found, it looks on obj.__proto__ (the prototype), and continues up the chain until null.
+
+Example:
+js
+const base = { greet() { return 'hi'; } };
+const child = Object.create(base);
+child.name = 'A';
+console.log(child.greet()); // found via prototype
+
+The prototype chain enables shared methods without copying them to every object.",Yes,JavaScript / objects,You are TensoraMax Studio Assistant. Be precise but beginner-friendly.,javascript,How does JavaScript’s prototype chain work?
+ML: cross-entropy loss intuition,Train,Review,No,,"AI, Education, Machine Learning",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM","It compares predicted probabilities to truth and strongly penalizes confident wrong predictions, which helps training classifiers.","June 13, 2026 1:11 AM",Yes,Yes,81,Binary classification; sigmoid output.,Explain cross-entropy loss intuitively for classification.,"Cross-entropy measures how well predicted probabilities match the true labels.
+
+For binary classification:
+- if y=1, you want p close to 1 (penalize -log(p))
+- if y=0, you want p close to 0 (penalize -log(1-p))
+
+It heavily penalizes confident wrong predictions, encouraging calibrated probabilities.",Yes,Loss functions,You are TensoraMax Studio Assistant. Be intuitive and correct; minimal math.,ml,What is cross-entropy loss and why is it used?
+Reasoning: why correlation ≠ causation (example),Validation,Review,No,,"Data Science, Education, Reasoning",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM",Because confounders can drive both variables; use experiments or careful causal inference to establish causality.,"June 13, 2026 1:11 AM",Yes,Yes,79,Example: ice cream sales and drowning.,Explain correlation vs causation and provide a simple example and a way to test causality.,"Correlation means two variables move together; causation means one directly influences the other.
+
+Example: ice cream sales and drowning both increase in summer. Temperature is a confounder.
+
+To test causality:
+- run a randomized experiment when possible
+- or use quasi-experiments (natural experiments), controlled studies, and causal models
+
+Key: look for confounders and a plausible mechanism.",Yes,Causal reasoning,You are TensoraMax Studio Assistant. Teach clearly with a confounder example.,reasoning,Why doesn’t correlation imply causation?
+Python: logging configuration with dictConfig,Train,Review,No,,"DevOps, Programming, Software Engineering",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM",Use logging.config.dictConfig to declare handlers/levels and configure the root logger (see Output).,"June 13, 2026 1:11 AM",Yes,Yes,83,Need INFO level console logger and DEBUG file logger.,Show how to configure Python logging using logging.config.dictConfig.,"python
+import logging
+import logging.config
+
+LOGGING = {
+  ""version"": 1,
+  ""handlers"": {
+    ""console"": {""class"": ""logging.StreamHandler"", ""level"": ""INFO""},
+    ""file"": {""class"": ""logging.FileHandler"", ""level"": ""DEBUG"", ""filename"": ""app.log""},
+  },
+  ""root"": {""handlers"": [""console"", ""file""], ""level"": ""DEBUG""},
+}
+
+logging.config.dictConfig(LOGGING)
+log = logging.getLogger(__name__)
+log.info(""hello"")
+log.debug(""details"")
+",Yes,Python / logging,"You are TensoraMax Studio Assistant. Provide correct, production-ready examples.",python,How do I configure Python logging in code?
+JavaScript: explain closure with a practical example,Train,Review,No,,"Education, Programming, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM",It’s when a function retains access to variables from its outer scope; a counter factory is a classic example.,"June 13, 2026 1:11 AM",Yes,Yes,82,Counter factory example.,Explain closures and show a practical example that uses them.,"A closure is when a function “remembers” variables from its surrounding scope even after that scope has returned.
+
+Example:
+js
+function makeCounter() {
+  let n = 0;
+  return () => ++n;
+}
+const c = makeCounter();
+console.log(c()); // 1
+console.log(c()); // 2
+
+Here the inner function closes over n.",Yes,JavaScript / fundamentals,"You are TensoraMax Studio Assistant. Teach with a clean, correct example.",javascript,What is a closure in JavaScript?
+Cybersecurity: threat modeling (STRIDE) overview,Train,Review,No,,"Cybersecurity, Education, Software Engineering",Hard,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM",Use STRIDE on a data-flow diagram and list mitigations per component; prioritize by impact and likelihood.,"June 13, 2026 1:11 AM",Yes,Yes,86,New feature: file upload service.,Explain STRIDE threat modeling and how to apply it quickly.,"STRIDE categories:
+- Spoofing
+- Tampering
+- Repudiation
+- Information disclosure
+- Denial of service
+- Elevation of privilege
+
+Quick process:
+1) Diagram data flows (client → API → storage).
+2) For each component, list STRIDE threats.
+3) Add mitigations (authn/z, validation, rate limits, logging).
+4) Prioritize by likelihood × impact.",Yes,Threat modeling,You are TensoraMax Studio Assistant. Keep it practical and mitigation-focused.,docs,How do I do quick threat modeling for a feature?
+CSS: specificity rules (quick guide),Train,Review,No,,"Education, Frontend, Web Development",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM","Specificity decides which selector wins; ids beat classes, classes beat elements. Use devtools and prefer classes over !important.","June 13, 2026 1:11 AM",Yes,Yes,85,User has styles not applying due to competing selectors.,Explain CSS specificity and how to resolve conflicts.,"Specificity determines which rule wins when multiple rules match.
+
+General order (low → high):
+- element (div)
+- class/attribute (.btn, [type=text])
+- id (#header)
+- inline styles
+
+Tips:
+- Prefer adding a class rather than using !important.
+- Keep selectors short.
+- Use devtools to inspect which rule wins.",Yes,CSS / specificity,You are TensoraMax Studio Assistant. Keep it practical and accurate.,css,Why isn’t my CSS applying? What is specificity?
+SQL: create an index and verify usage with EXPLAIN,Train,Review,No,,"Backend, Databases, Software Engineering",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:11 AM",Create the index on the filter column and use EXPLAIN ANALYZE to confirm the plan uses an Index Scan.,"June 13, 2026 1:11 AM",Yes,Yes,84,Postgres example; query filters by user_id.,Show how to create an index and check if a query uses it with EXPLAIN.,"sql
+CREATE INDEX CONCURRENTLY idx_orders_user_id ON orders(user_id);
+
+EXPLAIN ANALYZE
+SELECT * FROM orders WHERE user_id = 42;
+
+
+Look for an Index Scan (or Bitmap Index Scan) rather than a Seq Scan. Measure before/after.",Yes,SQL / indexing,You are TensoraMax Studio Assistant. Be accurate and performance-oriented.,docs,How do I add an index and confirm it’s being used?
+JavaScript: difference between == and ===,Train,Review,No,,"Education, Programming, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",=== avoids coercion and is safer; == coerces and can surprise. Prefer ===.,"June 13, 2026 1:12 AM",Yes,Yes,87,Include null/undefined example.,Explain loose vs strict equality in JavaScript and give guidance.,"- === is strict: no type coercion.
+- == is loose: performs coercion, which can be surprising.
+
+Examples:
+- 0 == false → true
+- 0 === false → false
+- null == undefined → true
+- null === undefined → false
+
+Guidance: use === by default; use == null only when you explicitly want to match both null and undefined.",Yes,JavaScript / equality,You are TensoraMax Studio Assistant. Be precise and recommend best practices.,javascript,What’s the difference between == and === in JavaScript?
+Python: handle exceptions (try/except/else/finally),Train,Review,No,,"Education, Programming",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","Use try for risky code, except for handling, else for success path, and finally for cleanup (see example).","June 13, 2026 1:12 AM",Yes,Yes,88,Need to parse int from input safely.,Explain Python exception handling blocks and give a small example.,"- try: code that may fail
+- except: handle specific exceptions
+- else: runs if no exception
+- finally: always runs (cleanup)
+
+Example:
+python
+s = '42'
+try:
+    n = int(s)
+except ValueError:
+    n = 0
+else:
+    print('parsed')
+finally:
+    print('done')
+",Yes,Python / exceptions,You are TensoraMax Studio Assistant. Teach clearly with correct examples.,python,How do try/except/else/finally work in Python?
+CSS: box model explained,Train,Review,No,,"Education, Frontend, Web Development",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",Default box-sizing applies width to content only; padding/border add. Use box-sizing: border-box for predictable sizing.,"June 13, 2026 1:12 AM",Yes,Yes,93,User confused why element is bigger than declared width.,Explain the CSS box model and how width/height relate to padding and border.,"Box model layers: content → padding → border → margin.
+
+By default (box-sizing: content-box), width applies to content only, so padding/border add to the total size.
+
+Common fix:
+css
+* { box-sizing: border-box; }
+
+With border-box, width includes padding and border, making layouts easier.",Yes,CSS / layout fundamentals,You are TensoraMax Studio Assistant. Be clear and practical.,css,What is the CSS box model and why is my div wider than 300px?
+SQL: transactions (BEGIN/COMMIT/ROLLBACK),Train,Review,No,,"Backend, Databases, Education",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",Use transactions when multiple statements must stay consistent; commit on success or rollback on failure.,"June 13, 2026 1:12 AM",Yes,Yes,89,Need to update two tables atomically.,Explain database transactions and provide a simple SQL example.,"A transaction groups multiple statements so they either all succeed or all fail.
+
+sql
+BEGIN;
+UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;
+-- if something fails: ROLLBACK;
+
+Use transactions for invariants like “money is conserved”.",Yes,Transactions,You are TensoraMax Studio Assistant. Emphasize correctness and invariants.,docs,What is a SQL transaction and when should I use it?
+HTML: meta viewport for mobile responsiveness,Train,Review,No,,"Education, Frontend, Web Development",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","It controls how mobile browsers size the viewport; use width=device-width, initial-scale=1.","June 13, 2026 1:12 AM",Yes,Yes,91,Mobile site looks zoomed out by default.,Explain the purpose of the meta viewport tag and provide the standard snippet.,"Use this in <head>:
+html
+<meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+
+
+It tells mobile browsers to set the layout viewport to the device width so CSS pixels map more naturally and your responsive design works as intended.",Yes,HTML / responsive design,"You are TensoraMax Studio Assistant. Provide correct, modern HTML guidance.",html,What is the meta viewport tag and what should it be set to?
+Cybersecurity: OWASP Top 10 (what it is),Train,Review,No,,"Cybersecurity, Education, Web Development",Easy,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","It’s a baseline list of common web app risks used for training, reviews, and testing prioritization.","June 13, 2026 1:12 AM",Yes,Yes,90,Need practical usage guidance.,Explain what OWASP Top 10 is and how teams should use it.,"OWASP Top 10 is a periodically updated list of common web application security risks.
+
+How to use it:
+- as a checklist during design reviews
+- to prioritize security training
+- to guide testing (SAST/DAST, manual review)
+
+It’s not exhaustive, but it’s a strong baseline for web security hygiene.",Yes,Security fundamentals,You are TensoraMax Studio Assistant. Provide defensive guidance and practical steps.,docs,What is the OWASP Top 10 and why does it matter?
+AI: temperature vs top-p sampling,Train,Review,No,,"AI, Education, Machine Learning",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","Temperature changes randomness broadly; top-p restricts the candidate set. Use low values for factual tasks, higher for creativity.","June 13, 2026 1:12 AM",Yes,Yes,96,Need control over creativity vs determinism.,Explain temperature and top-p and when to tune them.,"- Temperature scales logits: lower → more deterministic; higher → more diverse.
+- Top-p (nucleus) sampling restricts choices to the smallest set of tokens whose cumulative probability ≥ p.
+
+Guidance:
+- For coding/QA: low temperature (0–0.3), moderate top-p.
+- For brainstorming: higher temperature (0.7–1.0).
+
+Tune one at a time to avoid unpredictable interactions.",Yes,Decoding / sampling,You are TensoraMax Studio Assistant. Be accurate and practical.,ml,What’s the difference between temperature and top-p?
+Machine Learning: train vs inference (what changes),Train,Review,No,,"AI, Deep Learning, Education, Machine Learning",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",Training updates weights and may enable layers like dropout; inference is forward-only with eval-mode behavior for some layers.,"June 13, 2026 1:12 AM",Yes,Yes,94,Include dropout/batchnorm note.,Explain the difference between training time and inference time behavior.,"Training: update parameters to minimize loss; some layers behave differently.
+
+Inference: parameters are fixed; you run forward passes to get predictions.
+
+Examples:
+- Dropout: active during training, off during inference.
+- BatchNorm: uses batch stats during training, running averages during inference.
+
+This is why you must set models to eval mode before serving.",Yes,ML fundamentals,You are TensoraMax Studio Assistant. Be clear and correct.,ml,What’s the difference between training and inference in ML?
+TXB Knowledge: how to answer with 'grounded-only' rule,Test,Review,No,,"AI, TXB Knowledge, TensoraMax Studio",Hard,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","Use retrieved passages as the only source, abstain when context is missing, and avoid inventing titles/steps.","June 13, 2026 1:12 AM",Yes,No,92,Need short policy for system prompt.,Write a policy snippet for the assistant: answer only from retrieved TXB context and abstain otherwise.,"Grounded-only policy (snippet):
+- Use retrieved TXB passages as the sole source of factual claims.
+- If context is insufficient, say: “I don’t have enough information in TXB to answer that” and ask what doc to consult.
+- Quote or cite the exact section used when possible.
+- Never invent page titles, URLs, or procedures.
+
+This reduces hallucinations and keeps answers auditable.",Yes,Grounding policy,"You are TensoraMax Studio Assistant. Write concise, enforceable policies.","docs, txb",Can you write a grounded-only policy for answering from TXB?
+TensoraMax Studio: rubric for reviewing dataset entries,Train,Review,No,,"Productivity, Software Engineering, TXB Knowledge, TensoraMax Studio",Expert,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","Use a rubric scoring correctness, clarity, completeness, safety, groundedness, and formatting; approve only above a threshold.","June 13, 2026 1:12 AM",Yes,No,95,"Need criteria: correctness, clarity, safety, groundedness, formatting.",Create a reviewer rubric for approving dataset examples in this database.,"Reviewer rubric (score 0–2 each):
+1) Correctness (facts/code)
+2) Clarity (unambiguous, well-structured)
+3) Completeness (answers the prompt)
+4) Safety (no harmful guidance)
+5) Groundedness (if TXB, cites/quotes evidence)
+6) Formatting (code blocks, style)
+
+Approval guidance:
+- Approve if total ≥ 10/12 and no critical safety/correctness issues.
+- Otherwise request edits or reject with notes.",Yes,Dataset QA process,You are TensoraMax Studio Assistant. Produce professional QA process docs.,"docs, txb",How should we review and approve dataset examples?
+Python: virtual environments (venv) basics,Train,Review,No,,"DevOps, Education, Programming",Easy,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","Use python -m venv .venv, activate it, then install dependencies; this isolates packages per project.","June 13, 2026 1:12 AM",Yes,Yes,99,User wants isolate dependencies per project.,Explain what a Python virtual environment is and how to create/use one with venv.,"A virtual environment isolates Python packages per project.
+
+Commands:
+bash
+python -m venv .venv
+# activate
+source .venv/bin/activate  # mac/linux
+.venv\Scripts\activate     # windows
+pip install -r requirements.txt
+
+
+Commit requirements.txt (or pyproject.toml) but not the .venv folder.",Yes,Python / tooling,You are TensoraMax Studio Assistant. Give correct commands and brief rationale.,python,How do I set up a virtual environment in Python?
+Backend: JWT vs session cookies (tradeoffs),Train,Review,No,,"Backend, Cybersecurity, Software Engineering, Web Development",Hard,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",Session cookies are usually simpler for web apps due to easy revocation; JWTs are stateless but harder to revoke—use short TTLs if you choose JWT.,"June 13, 2026 1:12 AM",Yes,Yes,97,Single-page app + API; needs logout and revocation.,Compare JWT auth and session-cookie auth for web apps and give guidance.,"- Session cookies: server stores session; easy revocation/logout; simpler; needs shared session store if multi-server.
+- JWT: stateless verification; good for service-to-service; revocation is harder (need short TTL + denylist/rotation).
+
+Guidance:
+- Web apps: session cookies are often simpler and safer.
+- If using JWTs, keep TTL short and rotate refresh tokens; consider server-side revocation for high-risk apps.",Yes,Authentication design,You are TensoraMax Studio Assistant. Be balanced and security-focused.,docs,Should we use JWTs or session cookies for authentication?
+TypeScript: discriminated unions example,Train,Review,No,,"Education, Programming, Software Engineering, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",Use a shared kind field and switch on it; TypeScript narrows types per case (see example).,"June 13, 2026 1:12 AM",Yes,Yes,101,Example: Circle vs Rectangle area.,Show how discriminated unions work in TypeScript with a switch on a tag field.,"ts
+type Circle = { kind: 'circle'; r: number };
+type Rect = { kind: 'rect'; w: number; h: number };
+type Shape = Circle | Rect;
+
+function area(s: Shape): number {
+  switch (s.kind) {
+    case 'circle': return Math.PI * s.r * s.r;
+    case 'rect': return s.w * s.h;
+  }
+}
+",Yes,TypeScript / types,"You are TensoraMax Studio Assistant. Provide correct, type-safe examples.",javascript,Can you show a simple discriminated union in TypeScript?
+Frontend: accessibility basics (keyboard + focus),Train,Review,No,,"Education, Frontend, Productivity, Web Development",Medium,9,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","Ensure tab navigation, visible focus, semantic controls, no traps, and correct focus management—especially for dialogs/modals.","June 13, 2026 1:12 AM",Yes,Yes,98,Need quick audit items.,Provide a checklist for keyboard accessibility and focus management in web UIs.,"Checklist:
+- All interactive elements reachable via Tab.
+- Visible focus styles (don’t remove outline without replacement).
+- Use semantic elements (button, a, input).
+- No keyboard traps; Esc closes modals.
+- Manage focus on open/close (focus modal, return focus to trigger).
+- Use proper labels and ARIA only when needed.
+
+Test: navigate the app with keyboard only.",Yes,Accessibility,You are TensoraMax Studio Assistant. Prioritize practical accessibility checks.,docs,What are the most important accessibility checks for keyboard users?
+Databases: isolation levels (dirty/non-repeatable/phantom),Train,Review,No,,"Backend, Databases, Education, Software Engineering",Expert,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",They define how transactions see each other’s changes; higher isolation prevents more anomalies but can increase contention.,"June 13, 2026 1:12 AM",Yes,Yes,103,Need short mapping of Read Uncommitted/Committed/Repeatable/Serializable.,Explain common transaction isolation levels and the anomalies they prevent.,"Anomalies:
+- Dirty read
+- Non-repeatable read
+- Phantom read
+
+Isolation levels (simplified):
+- Read Uncommitted: can see dirty reads (rarely used).
+- Read Committed: prevents dirty reads; non-repeatable/phantoms can occur.
+- Repeatable Read: prevents non-repeatable reads; phantom behavior depends on DB.
+- Serializable: strongest; behaves like transactions run one-at-a-time; may retry on conflicts.
+
+Choose based on invariants and measure contention.",Yes,Transactions / isolation,You are TensoraMax Studio Assistant. Be accurate and avoid DB-specific overclaims.,docs,What are database isolation levels?
+Machine Learning: calibration (why probabilities lie),Train,Review,No,,"AI, Data Science, Education, Machine Learning",Hard,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM",Calibration aligns predicted probabilities with reality; measure with calibration curves/ECE and fix with Platt scaling or isotonic regression on validation data.,"June 13, 2026 1:12 AM",Yes,Yes,100,Binary classifier outputs 0.9 but only 70% correct.,Explain model probability calibration and how to check/improve it.,"Calibration means predicted probabilities match observed frequencies.
+
+How to check:
+- reliability diagram / calibration curve
+- Expected Calibration Error (ECE)
+
+How to improve:
+- Platt scaling (logistic) or isotonic regression on validation set
+- more data / regularization
+
+A well-calibrated model’s “0.9” predictions are correct about 90% of the time.",Yes,Evaluation / calibration,You are TensoraMax Studio Assistant. Be clear and practically useful.,ml,My classifier’s probabilities seem overconfident. What is calibration?
+AI: chain-of-thought vs final answer policy,Test,Review,No,,"AI, Education, Reasoning",Medium,8,Safe,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","We can explain the reasoning at a high level, but we don’t reveal hidden deliberation traces; we provide concise rationales and necessary steps instead.","June 13, 2026 1:12 AM",Yes,Yes,102,User requests step-by-step hidden reasoning.,Explain why assistants should not expose hidden chain-of-thought and what to do instead.,"Assistants should provide clear explanations, but not reveal hidden deliberation traces.
+
+Instead:
+- provide a short rationale or outline
+- show intermediate calculations only when needed for transparency
+- keep private reasoning private
+
+This balances helpfulness with safety and reduces leaking irrelevant sensitive details.",Yes,Assistant behavior policy,You are TensoraMax Studio Assistant. Follow safe explanation practices.,"ml, reasoning",Why won’t you show your chain-of-thought reasoning?
+TXB Knowledge: escalation workflow when doc is missing,Train,Review,No,,"AI, Productivity, TXB Knowledge, TensoraMax Studio",Hard,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:12 AM","Abstain, clarify, log a doc gap, and feed the eventual doc back into training examples—creating a continuous improvement loop.","June 13, 2026 1:12 AM",Yes,No,105,"Need steps: ask clarifying, suggest doc creation, create task.",Define what the assistant should do when TXB lacks the needed info.,"Workflow:
+1) Say TXB context is insufficient (abstain).
+2) Ask 1–2 clarifying questions (which product/version/env).
+3) Suggest the likely TXB location or owner.
+4) Create a ""Doc gap"" entry: missing topic, requester, priority, suggested outline.
+5) Once doc exists, add grounded Q&A examples to dataset.
+
+Goal: turn unanswered questions into documentation and training data.",Yes,Knowledge operations,You are TensoraMax Studio Assistant. Be process-oriented and grounded.,"docs, txb",What should the assistant do if it can’t find the answer in TXB?
+TensoraMax Studio: evaluation dataset selection strategy,Test,Review,No,,"AI, Machine Learning, Reasoning, TensoraMax Studio",Expert,8,Needs Review,English,Synthetic,v0.1,"June 13, 2026 1:13 AM",Use a frozen regression core plus a rotating failure-driven set; stratify by domain/difficulty/format and track slice metrics.,"June 13, 2026 1:12 AM",Yes,No,104,Need stable + rotating sets; cover domains and difficulty.,Propose how to select and maintain a balanced evaluation set for the assistant.,"Strategy:
+- Maintain a frozen core test set (regression suite) covering critical user journeys.
+- Add a rotating set sampled from recent failures and new features.
+- Stratify by: domain, difficulty, safety label, and format (instruction vs chat).
+- Track metrics per slice (coding, TXB QA, reasoning).
+- Add ""canary"" adversarial prompts (prompt injection, jailbreak attempts) for safety regression.
+
+Version the eval suite alongside dataset version.",Yes,Evaluation strategy,You are TensoraMax Studio Assistant. Write like an internal MLOps guidance doc.,"docs, ml, txb",How should we build a good evaluation dataset for our assistant?
